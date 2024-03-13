@@ -12,7 +12,7 @@ class Register extends StatefulWidget {
 class _RegisterState extends State<Register> {
 
 
-final formkey = GlobalKey<FormState>();
+final formkey  = GlobalKey<FormState>();
 Profile profiles = Profile();
 
   @override
