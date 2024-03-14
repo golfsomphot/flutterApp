@@ -35,7 +35,7 @@ class _HomeState extends State<Home> {
                   icon: const Icon(
                     Icons.add,
                     color: Colors.black,
-                    size: 30.0,
+                    size: 20.0,
                   ),
                   label: const Text(
                     'สร้างบัญชี',
