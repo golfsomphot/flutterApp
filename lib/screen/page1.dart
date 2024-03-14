@@ -14,7 +14,7 @@ class _Page1State extends State<Page1> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'myapp',
+      title: 'myappsasa',
       routes: AppRoute.all,
       home: Login(),
     );
