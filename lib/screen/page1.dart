@@ -16,7 +16,7 @@ class _Page1State extends State<Page1> {
     return MaterialApp(
       title: 'myapptest1 notmail',
       routes: AppRoute.all,
-      home: Login(),
+      home: const Login(),
     );
   }
 }
