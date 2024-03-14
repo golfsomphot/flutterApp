@@ -16,7 +16,7 @@ class _Page1State extends State<Page1> {
     return MaterialApp(
       title: 'myappsasa',
       routes: AppRoute.all,
-      home: Login(),
+      home: const Login(),
     );
   }
 }
