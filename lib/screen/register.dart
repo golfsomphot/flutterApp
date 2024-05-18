@@ -13,17 +13,7 @@ class _RegisterState extends State<Register> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Regiter"),
-      ),
-      body: Container(
-        child: Column(
-          children: [
-            TextField(
-              decoration: InputDecoration(),
-            ),
-            TextField()
-          ],
-        ),
+        title: Text('register'),
       ),
     );
   }

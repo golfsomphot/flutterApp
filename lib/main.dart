@@ -1,7 +1,8 @@
 // import 'dart:ffi';
 import 'package:flutter/material.dart';
+import 'package:myapp/screen/about.dart';
 import 'package:myapp/screen/home.dart';
-import 'package:myapp/screen/page1.dart';
+import 'package:myapp/screen/login.dart';
 
 void main() {
   runApp(const MainApp());
@@ -13,8 +14,8 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Page1(),
+    return MaterialApp(
+      home: Login(),
     );
   }
 }
