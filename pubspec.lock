@@ -204,10 +204,10 @@ packages:
     dependency: "direct main"
     description:
       name: in_app_update
-      sha256: b6ccb757281a96a4b18536f68fe2567aeca865134218719364212da8fe94615c
+      sha256: "489572accaa55b51518b2d64676ca8c3c6d4c989fa53cf718001882237691a3c"
       url: "https://pub.dev"
     source: hosted
-    version: "4.2.2"
+    version: "4.2.3"
   intl:
     dependency: "direct main"
     description:
@@ -321,7 +321,7 @@ packages:
     source: hosted
     version: "2.0.1"
   package_info_plus:
-    dependency: "direct main"
+    dependency: "direct overridden"
     description:
       name: package_info_plus
       sha256: "7e76fad405b3e4016cd39d08f455a4eb5199723cf594cd1b8916d47140d93017"
