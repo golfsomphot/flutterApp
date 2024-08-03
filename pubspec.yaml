@@ -41,7 +41,6 @@ dependencies:
   upgrader: ^8.4.0
   flutter_app_version_checker: ^0.3.2
   new_version_plus: ^0.0.10
-
   app_version_update: ^4.0.1
   url_launcher: ^6.0.9
   logger: ^2.1.0

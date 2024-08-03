@@ -52,7 +52,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   device_info_plus: c6fb39579d0f423935b0c9ce7ee2f44b71b9fce6
-  Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
+  Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
   flutter_app_version_checker: 2beb5e211990c45ebfc17b81aa4d08ebd7edb757
   libphonenumber_plugin: 48bf4078546377eedaab4aa54978cd0f6fa23072
   package_info_plus: 115f4ad11e0698c8c1c5d8a689390df880f47e85
