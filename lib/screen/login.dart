@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:myapp/screen/product.dart';
+import 'package:myapp/screen/register.dart';
 import 'package:myapp/screen/tabbar.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -109,16 +110,32 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       SizedBox(height: 10),
                       Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Checkbox(
-                            value: _rememberMe,
-                            onChanged: (value) {
-                              setState(() {
-                                _rememberMe = value!;
-                              });
-                            },
+                          Container(
+                            child: Row(
+                              children: [
+                                Checkbox(
+                                  value: _rememberMe,
+                                  onChanged: (value) {
+                                    setState(() {
+                                      _rememberMe = value!;
+                                    });
+                                  },
+                                ),
+                                Text('Remember me'),
+                              ],
+                            ),
                           ),
-                          Text('Remember me'),
+                          InkWell(
+                            hoverColor: Colors.amber,
+                            child: Text('Register'),
+                            onTap: () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => RegisterScreen()),
+                            ),
+                          )
                         ],
                       ),
                       SizedBox(height: 20),
@@ -141,7 +158,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         child: Text('Log In'),
                         style: ElevatedButton.styleFrom(
                           iconColor: Colors.indigo,
-                          backgroundColor:Colors.white12,
+                          backgroundColor: Colors.white12,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(20),
                           ),
