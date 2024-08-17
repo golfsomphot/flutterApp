@@ -25,7 +25,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
           // Add decoration property for rounded corners
           decoration: BoxDecoration(
             color: Colors.amber,
-            borderRadius: BorderRadius.all(Radius.circular(10.0)), // Adjust radius as needed
+            borderRadius: BorderRadius.all(
+                Radius.circular(10.0)), // Adjust radius as needed
           ),
           height: 600,
           child: Form(
@@ -42,8 +43,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     ),
                   ),
                 ),
-                TextFormField(
-                  keyboardType:TextInputType.emailAddress
+                Padding(
+                  padding: const EdgeInsets.only(left: 8.0),
+                  child: TextFormField(
+                      keyboardType: TextInputType.emailAddress),
                 ),
                 SizedBox(
                   height: 30,
@@ -58,8 +61,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     ),
                   ),
                 ),
-                TextFormField(
-                   keyboardType:TextInputType.visiblePassword
+                Padding(
+                  padding: const EdgeInsets.only(left: 8.0),
+                  child: TextFormField(
+                      obscureText: true,
+                      enableSuggestions: false,
+                      autocorrect: false,
+                      keyboardType: TextInputType.number),
                 ),
                 SizedBox(
                   height: 30,
@@ -74,8 +82,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     ),
                   ),
                 ),
-                TextFormField(
-                   keyboardType:TextInputType.visiblePassword
+                Padding(
+                  padding: const EdgeInsets.only(left: 8.0),
+                  child: TextFormField(
+                      obscureText: true,
+                      enableSuggestions: false,
+                      autocorrect: false,
+                      keyboardType: TextInputType.number),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 30),
