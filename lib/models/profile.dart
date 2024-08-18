@@ -3,4 +3,3 @@ class Profile {
   String password = "";
   Profile({required this.email, required this.password});
 }
- 
