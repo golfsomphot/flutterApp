@@ -121,34 +121,34 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                     if (formkey.currentState!.validate()) {
                                       formkey.currentState?.save();
                                       try {
-                                        await FirebaseAuth.instance
-                                            .createUserWithEmailAndPassword(
+                                        await FirebaseAuth.instance.createUserWithEmailAndPassword(
                                                 email: profile.email,
-                                                password: profile.password);
-                                        Fluttertoast.showToast(
-                                            msg: "สร้างบัญชีเรียบร้อย",
-                                            gravity: ToastGravity.CENTER);
-                                        Navigator.pop(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  LoginScreen()),
-                                        );
-                                        // clear ค่าใน form field
-                                        formkey.currentState?.reset();
+                                                password: profile.password)
+                                            .then((Value) => {
+                                                  // clear ค่าใน form field
+                                                  formkey.currentState?.reset(),
+                                                  Fluttertoast.showToast(
+                                                      msg:"สร้างบัญชีเรียบร้อย",
+                                                      gravity:ToastGravity.CENTER),
+
+                                                  Navigator.pop(context,MaterialPageRoute(
+                                                        builder: (context) =>LoginScreen()),
+                                                  )
+                                                });
                                       } on FirebaseAuthException catch (e) {
-                                        // print("Error crea ${e.code} ${e.message}");
+                                        String msg = "";
+                                        if (e.code == "email-already-in-use") {
+                                          msg = "มีอีเมลอยู่ในระบบแล้ว";
+                                        } else if (e.code == "weak-password") {
+                                          msg = "password ขั้นต่ำ 6 เลข ";
+                                        } else {
+                                          msg = e.message!;
+                                        }
+
                                         Fluttertoast.showToast(
-                                            msg: e.message!,
+                                            msg: msg,
                                             gravity: ToastGravity.CENTER);
                                       }
-
-                                      // Navigator.pop(
-                                      //   context,
-                                      //   MaterialPageRoute(
-                                      //       builder: (context) =>
-                                      //           LoginScreen()),
-                                      // );
                                     }
                                     // เรียก ใช้งาน on save
                                   },
