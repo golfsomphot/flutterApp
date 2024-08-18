@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "146290939716",
+    "project_id": "tyrsi-213fb",
+    "storage_bucket": "tyrsi-213fb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:146290939716:android:f5fa07b890721048faa911",
+        "android_client_info": {
+          "package_name": "com.example.myapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDER-VdY5knXh7VM_zwUy28CkgW1a61MbM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
