@@ -6,7 +6,7 @@ import 'package:myapp/screen/tabbar.dart';
 
 Future<void> main() async {
   runApp(MainApp());
-  // await  
+  // await
 }
 
 class MainApp extends StatelessWidget {

@@ -19,8 +19,6 @@ class _LoginScreenState extends State<LoginScreen> {
   bool _rememberMe = false;
   final TextEditingController _userController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
- 
-
   final formkey = GlobalKey<FormState>();
   final Future<FirebaseApp> firebase = Firebase.initializeApp();
   Profile profile = Profile(email: '', password: '');
@@ -40,7 +38,7 @@ class _LoginScreenState extends State<LoginScreen> {
           if (snapshot.hasError) {
             return Scaffold(
                 appBar: AppBar(
-                  title: Text('error'),
+                  title: Text('Error'),
                 ),
                 body: Center(
                   child: Text("${snapshot.error}"),
@@ -71,7 +69,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               Text(
-                                'Log In',
+                                'เข้าสู่ระบบ',
                                 style: TextStyle(
                                   fontSize: 24,
                                   fontWeight: FontWeight.bold,
@@ -110,7 +108,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   ),
                                 ),
                                 validator: (value) {},
-                                 onSaved: (password) =>
+                                onSaved: (password) =>
                                     {profile.password = password!},
                               ),
                               SizedBox(height: 10),
@@ -118,20 +116,18 @@ class _LoginScreenState extends State<LoginScreen> {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Container(
-                                    child: Row(
-                                      children: [
-                                        Checkbox(
-                                          value: _rememberMe,
-                                          onChanged: (value) {
-                                            setState(() {
-                                              _rememberMe = value!;
-                                            });
-                                          },
-                                        ),
-                                        Text('Remember me'),
-                                      ],
-                                    ),
+                                  Row(
+                                    children: [
+                                      Checkbox(
+                                        value: _rememberMe,
+                                        onChanged: (value) {
+                                          setState(() {
+                                            _rememberMe = value!;
+                                          });
+                                        },
+                                      ),
+                                      Text('Remember me'),
+                                    ],
                                   ),
                                   InkWell(
                                     hoverColor: Colors.amber,
@@ -164,10 +160,13 @@ class _LoginScreenState extends State<LoginScreen> {
                               ),
                               SizedBox(height: 20),
                               ElevatedButton(
-                                child: Text('Log In'),
+                                child: Text(
+                                  'Log In',
+                                  style: TextStyle(color: Colors.white),
+                                ),
                                 style: ElevatedButton.styleFrom(
-                                  iconColor: Colors.indigo,
-                                  backgroundColor: Colors.white12,
+                                  backgroundColor:
+                                      Colors.indigo, // ปรับสีพื้นหลัง
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(20),
                                   ),
@@ -175,28 +174,26 @@ class _LoginScreenState extends State<LoginScreen> {
                                 ),
                                 onPressed: () async {
                                   if (formkey.currentState!.validate()) {
-                                      formkey.currentState?.save();
+                                    formkey.currentState?.save();
                                     try {
-                                      await FirebaseAuth.instance.signInWithEmailAndPassword(
+                                      await FirebaseAuth.instance
+                                          .signInWithEmailAndPassword(
                                               email: profile.email,
                                               password: profile.password)
-                                          .then((Value) => {
-                                                // clear ค่าใน form field
+                                          .then((value) => {
                                                 formkey.currentState?.reset(),
                                                 Fluttertoast.showToast(
                                                     msg: "เข้าสู่ระบบ",
                                                     gravity:
                                                         ToastGravity.CENTER),
-
-                                                   Navigator.push(
-                                                      context,
-                                                      MaterialPageRoute(
-                                                          builder: (context) =>
-                                                              Tabbar()),
-                                                    )
+                                                Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          Tabbar()),
+                                                )
                                               });
                                     } on FirebaseAuthException catch (e) {
-
                                       Fluttertoast.showToast(
                                           msg: e.message!,
                                           gravity: ToastGravity.CENTER);

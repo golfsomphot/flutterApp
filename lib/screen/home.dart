@@ -14,7 +14,7 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.purple[200],
+        backgroundColor: Colors.pink,
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [

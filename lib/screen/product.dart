@@ -130,7 +130,21 @@ class ProductPage extends StatelessWidget {
     return Container(
       child: Scaffold(
         appBar: AppBar(
-          title: Text('หน้าสินค้า'),
+          backgroundColor: Colors.pink,
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                'Product',
+                style: TextStyle(
+                  fontSize: 24,
+                  fontFamily: 'Arial', // ปรับเป็นฟอนต์มาตรฐาน
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+              ),
+            ],
+          ),
         ),
         body: GridView.builder(
           padding: EdgeInsets.all(10),

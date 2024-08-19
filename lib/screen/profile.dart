@@ -1,3 +1,5 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:myapp/screen/login.dart';
 import 'package:myapp/screen/tabbar.dart';
@@ -5,10 +7,25 @@ import 'package:myapp/screen/tabbar.dart';
 class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final Future<FirebaseApp> firebase = Firebase.initializeApp();
     return Container(
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Profile'),
+          backgroundColor: Colors.pink,
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                'Profile',
+                style: TextStyle(
+                  fontSize: 24,
+                  fontFamily: 'Arial', // ปรับเป็นฟอนต์มาตรฐาน
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+              ),
+            ],
+          ),
         ),
         body: SingleChildScrollView(
           child: Column(
@@ -59,6 +76,7 @@ class ProfilePage extends StatelessWidget {
                 leading: Icon(Icons.logout),
                 title: Text('ออกจากระบบ'),
                 onTap: () {
+                  FirebaseAuth.instance.signOut();
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => LoginScreen()),
