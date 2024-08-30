@@ -2,9 +2,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:myapp/screen/login.dart';
-import 'package:myapp/screen/tabbar.dart';
+
 
 class ProfilePage extends StatelessWidget {
+  get all => null;
+
   @override
   Widget build(BuildContext context) {
     final Future<FirebaseApp> firebase = Firebase.initializeApp();

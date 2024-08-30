@@ -6,9 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:myapp/models/profile.dart';
+import 'package:myapp/screen/home.dart';
 import 'package:myapp/screen/product.dart';
 import 'package:myapp/screen/register.dart';
-import 'package:myapp/screen/tabbar.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -190,7 +190,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                                   context,
                                                   MaterialPageRoute(
                                                       builder: (context) =>
-                                                          Tabbar()),
+                                                          Home()),
                                                 )
                                               });
                                     } on FirebaseAuthException catch (e) {

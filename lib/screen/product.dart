@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:myapp/screen/tabbar.dart';
+
 
 class ProductPage extends StatelessWidget {
   final List<Map<String, dynamic>> products = [
@@ -127,7 +127,8 @@ class ProductPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return
+     Container(
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.pink,

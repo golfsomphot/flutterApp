@@ -2,7 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:myapp/firebase_options.dart';
 import 'package:myapp/screen/login.dart';
-import 'package:myapp/screen/tabbar.dart';
+
 
 Future<void> main() async {
   runApp(MainApp());
