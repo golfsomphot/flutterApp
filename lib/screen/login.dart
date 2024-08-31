@@ -178,8 +178,12 @@ class _LoginScreenState extends State<LoginScreen> {
                                     try {
                                       await FirebaseAuth.instance
                                           .signInWithEmailAndPassword(
-                                              email: profile.email,
-                                              password: profile.password)
+                                              email: 'weera@gmail.com'
+                                              //  profile.email,
+                                              ,
+                                              password: '123456'
+                                              // profile.password
+                                              )
                                           .then((value) => {
                                                 formkey.currentState?.reset(),
                                                 Fluttertoast.showToast(
