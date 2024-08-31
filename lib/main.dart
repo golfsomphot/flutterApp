@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:myapp/firebase_options.dart';
 import 'package:myapp/screen/login.dart';
 
-
 Future<void> main() async {
   runApp(MainApp());
   // await
