@@ -12,7 +12,11 @@ class _PaymentState extends State<Payment> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Payment'),
+        backgroundColor: Colors.black,
+        title: Text(
+          'Payment',
+          style: TextStyle(color: Colors.white),
+        ),
       ),
     );
   }

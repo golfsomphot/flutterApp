@@ -24,26 +24,26 @@ class Navbarscreen extends StatelessWidget {
         PersistentBottomNavBarItem(
           icon: Icon(CupertinoIcons.home),
           title: ("Home"),
-          activeColorPrimary: CupertinoColors.activeBlue,
+          activeColorPrimary: CupertinoColors.white,
           inactiveColorPrimary: CupertinoColors.systemGrey,
         ),
         PersistentBottomNavBarItem(
           icon: Icon(CupertinoIcons.bolt_horizontal_circle),
           title: ("Dashbord"),
-          activeColorPrimary: CupertinoColors.activeBlue,
+          activeColorPrimary: CupertinoColors.white,
           inactiveColorPrimary: CupertinoColors.systemGrey,
         ),
         PersistentBottomNavBarItem(
-          icon: Icon(CupertinoIcons.arrowtriangle_right_square),
-          title: ("Settings"),
-          activeColorPrimary: CupertinoColors.activeBlue,
+          icon: Icon(CupertinoIcons.antenna_radiowaves_left_right),
+          title: ("Declare"),
+          activeColorPrimary: CupertinoColors.white,
           inactiveColorPrimary: CupertinoColors.systemGrey,
           scrollController: _scrollController1,
         ),
         PersistentBottomNavBarItem(
           icon: Icon(CupertinoIcons.settings),
           title: ("Settings"),
-          activeColorPrimary: CupertinoColors.activeBlue,
+          activeColorPrimary: CupertinoColors.white,
           inactiveColorPrimary: CupertinoColors.systemGrey,
           scrollController: _scrollController1,
         ),
@@ -62,7 +62,7 @@ class Navbarscreen extends StatelessWidget {
       hideNavigationBarWhenKeyboardAppears: true,
       // popBehaviorOnSelectedNavBarItemPress: PopActionScreensType.all,
       padding: const EdgeInsets.only(top: 8),
-      backgroundColor: Colors.grey.shade900,
+      backgroundColor: Colors.black,
       isVisible: true,
       animationSettings: const NavBarAnimationSettings(
         navBarItemAnimation: ItemAnimationSettings(

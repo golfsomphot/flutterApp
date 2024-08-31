@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class Mainhome extends StatefulWidget {
   const Mainhome({super.key});
@@ -30,9 +32,25 @@ class ListViewScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          'ListView in Flutter',
-          style: TextStyle(color: Colors.white),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              'CHATS',
+              style:
+                  TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+            ),
+            FloatingActionButton(
+              backgroundColor: Colors.transparent, // กำหนดพื้นหลังให้โปร่งใส
+              elevation: 0,
+              onPressed: () {},
+              child: FaIcon(
+                FontAwesomeIcons.plus,
+                color: Colors.white,
+                size: 18,
+              ),
+            )
+          ],
         ),
         backgroundColor: Colors.black,
       ),

@@ -3,7 +3,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:myapp/screen/login.dart';
 
-
 class ProfilePage extends StatelessWidget {
   get all => null;
 
@@ -13,7 +12,7 @@ class ProfilePage extends StatelessWidget {
     return Container(
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.pink,
+          backgroundColor: Colors.black,
           title: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
