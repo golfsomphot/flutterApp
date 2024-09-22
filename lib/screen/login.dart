@@ -6,14 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:myapp/models/profile.dart';
-<<<<<<< Updated upstream
-=======
-import 'package:myapp/screen/mainhome.dart';
-import 'package:myapp/screen/navbarscreen.dart';
->>>>>>> Stashed changes
 import 'package:myapp/screen/product.dart';
 import 'package:myapp/screen/register.dart';
-import 'package:myapp/screen/tabbar.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -183,8 +177,12 @@ class _LoginScreenState extends State<LoginScreen> {
                                     try {
                                       await FirebaseAuth.instance
                                           .signInWithEmailAndPassword(
-                                              email: profile.email,
-                                              password: profile.password)
+                                              email: 'weera@gmail.com'
+                                              //  profile.email,
+                                              ,
+                                              password: '123456'
+                                              // profile.password
+                                              )
                                           .then((value) => {
                                                 formkey.currentState?.reset(),
                                                 Fluttertoast.showToast(
@@ -195,7 +193,6 @@ class _LoginScreenState extends State<LoginScreen> {
                                                   context,
                                                   MaterialPageRoute(
                                                       builder: (context) =>
-<<<<<<< Updated upstream
                                                           Tabbar()),
                                                 )
 =======

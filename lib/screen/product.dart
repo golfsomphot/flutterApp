@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:myapp/screen/tabbar.dart';
 
 class ProductPage extends StatelessWidget {
   final List<Map<String, dynamic>> products = [
@@ -130,7 +129,7 @@ class ProductPage extends StatelessWidget {
     return Container(
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.pink,
+          backgroundColor: Colors.black,
           title: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -146,49 +145,52 @@ class ProductPage extends StatelessWidget {
             ],
           ),
         ),
-        body: GridView.builder(
-          padding: EdgeInsets.all(10),
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            childAspectRatio: 0.75,
-            crossAxisSpacing: 10,
-            mainAxisSpacing: 10,
+        body: Container(
+          color: Colors.black,
+          child: GridView.builder(
+            padding: EdgeInsets.all(10),
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              childAspectRatio: 0.75,
+              crossAxisSpacing: 10,
+              mainAxisSpacing: 10,
+            ),
+            itemCount: products.length,
+            itemBuilder: (context, index) {
+              return Card(
+                elevation: 5,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Expanded(
+                      child: Image.network(
+                        products[index]['image'],
+                        fit: BoxFit.cover,
+                        width: double.infinity,
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.all(8),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            products[index]['name'],
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                          SizedBox(height: 4),
+                          Text(
+                            products[index]['price'],
+                            style: TextStyle(color: Colors.green),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            },
           ),
-          itemCount: products.length,
-          itemBuilder: (context, index) {
-            return Card(
-              elevation: 5,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Expanded(
-                    child: Image.network(
-                      products[index]['image'],
-                      fit: BoxFit.cover,
-                      width: double.infinity,
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.all(8),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          products[index]['name'],
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                        SizedBox(height: 4),
-                        Text(
-                          products[index]['price'],
-                          style: TextStyle(color: Colors.green),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            );
-          },
         ),
       ),
     );

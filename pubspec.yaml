@@ -15,7 +15,7 @@ dependencies:
   upgrader: ^8.4.0
   new_version_plus: ^0.0.10
   app_version_update: ^4.0.1
-  url_launcher: ^6.0.9
+  url_launcher: ^6.2.4
   logger: ^2.1.0
   in_app_update: ^4.2.2
   http: ^0.13.6
@@ -24,10 +24,6 @@ dependencies:
   firebase_auth: ^5.3.0
   oauth2: ^2.0.2
   fluttertoast: ^8.2.8
-<<<<<<< Updated upstream
-=======
-  persistent_bottom_nav_bar: ^6.2.0
->>>>>>> Stashed changes
 
 dev_dependencies:
   flutter_test:
@@ -38,7 +34,7 @@ dev_dependencies:
 
 flutter_icons:
   ios: true
-  image_path: "img/logo.webp"
+  image_path: "img/origami.jpg"
 
 flutter:
   uses-material-design: true
