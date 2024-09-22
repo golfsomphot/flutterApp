@@ -1,20 +1,23 @@
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:myapp/firebase_options.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:myapp/screen/login.dart';
 import 'package:myapp/screen/tabbar.dart';
 
-Future<void> main() async {
-  runApp(MainApp());
-  // await
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(MyApp());
 }
 
-class MainApp extends StatelessWidget {
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Login App',
+      title: 'Flutter App',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
       home: LoginScreen(),
     );
   }

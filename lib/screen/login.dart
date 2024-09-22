@@ -6,6 +6,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:myapp/models/profile.dart';
+<<<<<<< Updated upstream
+=======
+import 'package:myapp/screen/mainhome.dart';
+import 'package:myapp/screen/navbarscreen.dart';
+>>>>>>> Stashed changes
 import 'package:myapp/screen/product.dart';
 import 'package:myapp/screen/register.dart';
 import 'package:myapp/screen/tabbar.dart';
@@ -190,8 +195,14 @@ class _LoginScreenState extends State<LoginScreen> {
                                                   context,
                                                   MaterialPageRoute(
                                                       builder: (context) =>
+<<<<<<< Updated upstream
                                                           Tabbar()),
                                                 )
+=======
+                                                          NewMenuScreen()),
+                                                  // ลบหน้าทั้งหมดใน stack
+                                                ),
+>>>>>>> Stashed changes
                                               });
                                     } on FirebaseAuthException catch (e) {
                                       Fluttertoast.showToast(
