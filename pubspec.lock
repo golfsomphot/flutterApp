@@ -527,8 +527,7 @@ packages:
       sha256: bd6f00dbd873bfb70d0761682da2b3a2c2fccc2b9e84c495821639601d81afe7
       url: "https://pub.dev"
     source: hosted
-<<<<<<< Updated upstream
-    version: "2.2.1"
+    version: "2.3.0"
   petitparser:
     dependency: transitive
     description:
@@ -847,5 +846,5 @@ packages:
     source: hosted
     version: "3.1.2"
 sdks:
-  dart: ">=3.3.0 <3.7.12"
-  flutter: ">=3.18.0-18.0.pre.54"
+  dart: ">=3.5.0 <3.7.12"
+  flutter: ">=3.24.0"
