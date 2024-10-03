@@ -20,8 +20,6 @@ dependencies:
   in_app_update: ^4.2.2
   http: ^0.13.6
   flutter_login: ^4.2.1
-  firebase_core: ^3.4.0
-  firebase_auth: ^5.3.0
   oauth2: ^2.0.2
   fluttertoast: ^8.2.8
 
