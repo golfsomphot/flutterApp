@@ -1,9 +1,9 @@
- 
 import 'package:flutter/material.dart';
+import 'package:myapp/screens/login.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
- 
+
   runApp(MyApp());
 }
 
@@ -12,18 +12,17 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter App',
+      title: '',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
       home: Scaffold(
-        appBar: AppBar(
-          title: Text('Welcome to Flutter'),
-        ),
-        body: Center(
-          child: Text('Hello, World!'),
-        ),
-      ),
+          appBar: AppBar(
+            title: Text(''),
+          ),
+          body: Container(
+            child: LoginScreen(),
+          )),
     );
   }
 }
