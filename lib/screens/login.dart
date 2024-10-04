@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:myapp/screens/chat.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -6,47 +9,66 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  final FirebaseAuth _auth = FirebaseAuth.instance;
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  final TextEditingController _phone = TextEditingController();
+  final TextEditingController _email = TextEditingController();
   bool _isLoading = false;
   bool _Checkbox = false;
 
-  void _login() {
+  void _login() async {
     if (_formKey.currentState!.validate()) {
       setState(() {
         _isLoading = true;
       });
 
-      Future.delayed(Duration(seconds: 2), () {
-        if (_emailController.text != 'g') {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text('เมลไม่ถูกต้อง')),
+      try {
+        if (_Checkbox) {
+          // Register user
+          try {
+            await _auth.createUserWithEmailAndPassword(
+              email: _email.text.trim(),
+              password: _passwordController.text.trim(),
+            );
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text('Registration successful!')),
+            );
+            setState(() {
+              _Checkbox = false;
+              _passwordController.text = '';
+              _email.text = '';
+            });
+          } on FirebaseAuthException catch (e) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text('Registration failed: ${e.message}')),
+            );
+          }
+        } else {
+          // Login user
+          await _auth.signInWithEmailAndPassword(
+            email: _emailController.text.trim(),
+            password: _passwordController.text.trim(),
           );
-          setState(() {
-            _isLoading = false;
-          });
-          return;
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text('Login successful!')),
+          );
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const Chat()),
+          );
         }
 
-        if (_passwordController.text != 'g') {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text('พาสไม่ถูกต้อง')),
-          );
-          setState(() {
-            _isLoading = false;
-          });
-          return;
-        }
-
+        // Navigate to another screen or home screen after login/registration
+      } on FirebaseAuthException catch (e) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(e.message ?? 'An error occurred')),
+        );
+      } finally {
         setState(() {
           _isLoading = false;
         });
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Login successful!')),
-        );
-      });
+      }
     }
   }
 
@@ -135,15 +157,15 @@ class _LoginScreenState extends State<LoginScreen> {
                 SizedBox(height: 16),
                 _Checkbox
                     ? TextFormField(
-                        keyboardType: TextInputType.phone,
-                        controller: _phone,
+                        keyboardType: TextInputType.emailAddress,
+                        controller: _email,
                         decoration: InputDecoration(
-                          labelText: 'Phone',
+                          labelText: 'Email',
                           border: OutlineInputBorder(),
                         ),
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return 'Please enter your numbers';
+                            return 'Please enter your Email';
                           } else {
                             return null;
                           }
