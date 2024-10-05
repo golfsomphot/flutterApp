@@ -13,16 +13,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      darkTheme: ThemeData.dark(),
       debugShowCheckedModeBanner: false,
-      title: '',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
       home: Scaffold(
-          appBar: AppBar(
-            title: Text(''),
-          ),
+          appBar: AppBar(),
           body: Container(
+            color: Colors.black.withOpacity(0.1),
+            height: 650,
             child: LoginScreen(),
           )),
     );
