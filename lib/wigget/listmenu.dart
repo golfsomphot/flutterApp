@@ -1,4 +1,10 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'package:myapp/models/listmenu.dart';
+import 'package:myapp/screens/chat.dart';
+import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
+// import model
 
 class ListMenu extends StatefulWidget {
   const ListMenu({super.key});
@@ -8,8 +14,23 @@ class ListMenu extends StatefulWidget {
 }
 
 class _ListMenuState extends State<ListMenu> {
-  List<int> itemCountList =
-      List.generate(20, (index) => 0); // เก็บจำนวนของแต่ละเมนู
+  List<int> itemCountList = [];
+  List<String> itemCountList_name = [];
+  List<Photo> photos = [];
+
+  // เก็บรายการ photos ใน State
+
+  Future<List<Photo>> fetchAlbum() async {
+    final res = await http
+        .get(Uri.parse('https://jsonplaceholder.typicode.com/photos'));
+
+    if (res.statusCode == 200) {
+      List<dynamic> jsonList = jsonDecode(res.body);
+      return jsonList.map((json) => Photo.fromJson(json)).toList();
+    } else {
+      throw Exception('Failed to load photos');
+    }
+  }
 
   void _increment(int index) {
     setState(() {
@@ -28,73 +49,95 @@ class _ListMenuState extends State<ListMenu> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 12.0),
-        child: ListView.builder(
-          itemCount: 20,
-          itemBuilder: (context, index) {
+      body: FutureBuilder<List<Photo>>(
+        future: fetchAlbum(),
+        builder: (context, snapshot) {
+          if (snapshot.hasError) {
+            return Center(child: Text('Error: ${snapshot.error}'));
+          } else if (snapshot.hasData) {
+            photos = snapshot.data!; // เก็บข้อมูลในตัวแปร photos
+
+            if (itemCountList.isEmpty) {
+              itemCountList = List.generate(5, (index) => 0);
+            }
+
             return Padding(
-              padding: const EdgeInsets.symmetric(vertical: 8.0),
-              child: Row(
-                children: [
-                  Expanded(
-                    flex: 1,
-                    child: Card(
-                      child: Padding(
-                        padding: EdgeInsets.all(2.0),
-                        child: Row(
-                          children: [
-                            Image.network(
-                              fit: BoxFit.cover,
-                              'https://img.pikbest.com/png-images/qianku/hand-painted-small-fresh-food-cartoon-illustration-fruit-cake-cute_1965054.png!w700wp',
-                              width: 50,
-                              height: 50,
-                            ),
-                            SizedBox(width: 10),
-                            Expanded(
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Text('รายการอาหาร ${index + 1}'),
-                                  const Spacer(), // เพิ่ม Spacer เพื่อดันปุ่มไปทางขวา
-                                  IconButton(
-                                    icon: Icon(Icons.remove),
-                                    onPressed: () => _decrement(index),
-                                  ),
-                                  Container(
-                                    width: 30,
-                                    child: Text(
-                                      '${itemCountList[index]}',
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                  ),
-                                  IconButton(
-                                    icon: Icon(Icons.add),
-                                    onPressed: () => _increment(index),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
+              padding: const EdgeInsets.symmetric(horizontal: 12.0),
+              child: ListView.builder(
+                itemCount: 5, // กำหนดจำนวนข้อมูลจริง
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 8.0),
+                    child: Row(
+                      children: [
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(8.0),
+                          child: Image.network(
+                            fit: BoxFit.cover,
+                            photos[index].thumbnailUrl,
+                            width: 100,
+                            height: 100,
+                          ),
                         ),
-                      ),
+                        SizedBox(width: 10),
+                        Expanded(
+                          child: Text(
+                            '${photos[index].id.toString()} ${photos[index].title}',
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                        IconButton(
+                          icon: Icon(Icons.remove),
+                          onPressed: () => _decrement(index),
+                        ),
+                        Container(
+                          width: 30,
+                          child: Text(
+                            '${itemCountList[index]}',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(fontSize: 16),
+                          ),
+                        ),
+                        IconButton(
+                            icon: Icon(Icons.add),
+                            onPressed: () => {
+                                  _increment(index),
+                                }),
+                      ],
                     ),
-                  ),
-                ],
+                  );
+                },
               ),
             );
-          },
-        ),
+          } else {
+            return Center(child: Text('No data available'));
+          }
+        },
       ),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.green.withOpacity(0.3),
+        backgroundColor:
+            const Color.fromARGB(255, 204, 223, 204).withOpacity(0.3),
         onPressed: () {
-          int selectedCount = itemCountList.where((count) => count > 0).length;
-          print('จำนวนสินค้าที่เลือก: $selectedCount');
-          print('รายการที่: $itemCountList');
+          List<Map<String, dynamic>> selectedItems = [];
+
+          // ดึงข้อมูลสินค้าที่ถูกเลือก
+          for (int i = 0; i < itemCountList.length; i++) {
+            if (itemCountList[i] > 0) {
+              selectedItems.add({
+                'title': photos[i].title, // ชื่อสินค้า
+                'count': itemCountList[i], // จำนวนสินค้า // จำนวนสินค้า
+              });
+            }
+          }
+          if (selectedItems != null) {
+            Navigator.of(context).push(
+              MaterialPageRoute<void>(
+                builder: (context) => Chat(selectedItems),
+              ),
+            );
+          }
+          // แสดง obj ใหม่
+          print('สินค้าที่เลือก: $selectedItems');
         },
         child: Stack(
           alignment: Alignment.center,
@@ -113,10 +156,10 @@ class _ListMenuState extends State<ListMenu> {
                 bottom: 25,
                 child: CircleAvatar(
                   radius: 8,
-                  backgroundColor: Colors.red.withOpacity(0.3),
+                  backgroundColor: Colors.red.withOpacity(0.9),
                   child: Text(
                     '${itemCountList.where((count) => count > 0).length}',
-                    style: TextStyle(fontSize: 8),
+                    style: TextStyle(fontSize: 12),
                   ),
                 ),
               ),
