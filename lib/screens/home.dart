@@ -11,6 +11,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+<<<<<<< HEAD
   String _scanResult = 'Unknown';
 
   Future<void> startBarcodeScan() async {
@@ -35,10 +36,13 @@ class _HomeState extends State<Home> {
     print('Scan result: $_scanResult');
   }
 
+=======
+>>>>>>> parent of f125523 (scan)
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+<<<<<<< HEAD
         automaticallyImplyLeading: false,
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -64,6 +68,32 @@ class _HomeState extends State<Home> {
           ],
         ),
       ),
+=======
+          automaticallyImplyLeading: false,
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                'HOME',
+                style: TextStyle(fontWeight: FontWeight.w400),
+              ),
+              Row(
+                children: [
+                  IconButton(
+                    focusColor: Colors.amber,
+                    onPressed: () {},
+                    icon: FaIcon(FontAwesomeIcons.add),
+                  ),
+                  IconButton(
+                    focusColor: Colors.amber,
+                    onPressed: () {},
+                    icon: FaIcon(FontAwesomeIcons.camera),
+                  )
+                ],
+              )
+            ],
+          )),
+>>>>>>> parent of f125523 (scan)
       body: ListMenu(),
     );
   }
