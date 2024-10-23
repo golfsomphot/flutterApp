@@ -21,8 +21,8 @@ class _ListMenuState extends State<ListMenu> {
   // เก็บรายการ photos ใน State
 
   Future<List<Photo>> fetchAlbum() async {
-    final res = await http
-        .get(Uri.parse('https://jsonplaceholder.typicode.com/photos'));
+    final res =
+        await http.get(Uri.parse('https://jsonplaceholder.typicode.com/users'));
 
     if (res.statusCode == 200) {
       List<dynamic> jsonList = jsonDecode(res.body);
